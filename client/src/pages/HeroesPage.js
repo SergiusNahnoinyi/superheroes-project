@@ -1,19 +1,7 @@
-import { useState, useEffect } from "react";
-
-import HeroesGallery from "../components/HeroesGallery";
-import getHeroes from "../services/heroesApi";
-
 export default function HeroesPage() {
-  const [heroes, setHeroes] = useState(null);
-
-  useEffect(() => {
-    getHeroes().then(setHeroes);
-  }, []);
-
   return (
     <section>
-      <h1 style={{ marginBottom: "16px", textAlign: "center" }}>Superheroes</h1>
-      <HeroesGallery heroes={heroes} />
+      <h1 style={{ marginBottom: "16px", textAlign: "center" }}>Heroes Page</h1>
     </section>
   );
 }

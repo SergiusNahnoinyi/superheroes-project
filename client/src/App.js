@@ -4,6 +4,7 @@ import { lazy, Suspense } from "react";
 import Container from "./components/Container";
 import AppBar from "./components/AppBar";
 
+const HomePage = lazy(() => import("./pages/HomePage"));
 const HeroesPage = lazy(() => import("./pages/HeroesPage"));
 
 export default function App() {
@@ -12,7 +13,8 @@ export default function App() {
       <AppBar />
       <Suspense fallback="Loading...">
         <Routes>
-          <Route path="/" element={<HeroesPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/heroes" element={<HeroesPage />} />
         </Routes>
       </Suspense>
     </Container>

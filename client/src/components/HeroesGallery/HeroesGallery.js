@@ -1,15 +1,15 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import styles from "./HeroesGallery.module.css";
 
 export default function HeroesGallery({ heroes }) {
   return (
-    <ul className={styles.Gallery}>
+    <ul className={styles.gallery}>
       {heroes &&
         heroes.map((hero) => (
           <li key={hero._id} className={styles.item}>
-            <a href="#" className={styles.link}>
+            <Link to={`/heroes/${hero._id}`} className={styles.link}>
               <img
                 className={styles.image}
                 src={
@@ -20,7 +20,7 @@ export default function HeroesGallery({ heroes }) {
                 alt={hero.real_name}
               />
               <h3 className={styles.title}>{hero.nickname}</h3>
-            </a>
+            </Link>
           </li>
         ))}
     </ul>
