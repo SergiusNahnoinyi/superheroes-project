@@ -45,3 +45,13 @@ export const updateHero = async (req, res, next) => {
     next(error);
   }
 };
+
+export const deleteHero = async (req, res, next) => {
+  try {
+    const { heroId } = req.params;
+    const hero = await Hero.findByIdAndRemove({ _id: heroId });
+    res.json({ message: "Deleted", code: 200, data: { hero } });
+  } catch (error) {
+    next(error);
+  }
+};
