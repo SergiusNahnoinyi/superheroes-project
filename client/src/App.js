@@ -6,6 +6,7 @@ import AppBar from "./components/AppBar";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const HeroesPage = lazy(() => import("./pages/HeroesPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/heroes" element={<HeroesPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </Container>
