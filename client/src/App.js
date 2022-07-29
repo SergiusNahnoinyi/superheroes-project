@@ -1,5 +1,11 @@
-import Container from "./components/Container/Container";
+import Container from "./components/Container";
+
+import HeroesPage from "./pages/HeroesPage";
 
 export default function App() {
-  return <Container></Container>;
+  return (
+    <Container>
+      <HeroesPage />
+    </Container>
+  );
 }
