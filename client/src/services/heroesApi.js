@@ -23,3 +23,14 @@ export async function getHeroById(heroId) {
     console.error(error);
   }
 }
+
+export async function getHeroesBySearch(heroName) {
+  const url = `https://www.superheroapi.com/api.php/1239994973410759/search/${heroName}`;
+  try {
+    const { data } = await axios.get(url);
+    console.log(data.results);
+    return data.results;
+  } catch (error) {
+    console.error(error);
+  }
+}

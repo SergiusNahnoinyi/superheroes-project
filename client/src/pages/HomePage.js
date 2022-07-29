@@ -12,7 +12,9 @@ export default function HomePage() {
 
   return (
     <section>
-      <h1 style={{ marginBottom: "16px", textAlign: "center" }}>Superheroes</h1>
+      <h1 style={{ marginBottom: "16px", textAlign: "center" }}>
+        Your Superheroes List
+      </h1>
       <HeroesGallery heroes={heroes} />
     </section>
   );
