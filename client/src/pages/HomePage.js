@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import HeroesGallery from "../components/HeroesGallery";
-import getHeroes from "../services/heroesApi";
+import { getHeroes } from "../services/heroesApi";
 
 export default function HomePage() {
   const [heroes, setHeroes] = useState(null);
