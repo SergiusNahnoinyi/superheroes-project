@@ -32,3 +32,16 @@ export const addHero = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateHero = async (req, res, next) => {
+  try {
+    const { heroId } = req.params;
+    const fields = req.body;
+    const hero = await Hero.findByIdAndUpdate({ _id: heroId }, fields, {
+      new: true,
+    });
+    res.json({ message: "Updated", code: 200, data: { hero } });
+  } catch (error) {
+    next(error);
+  }
+};
