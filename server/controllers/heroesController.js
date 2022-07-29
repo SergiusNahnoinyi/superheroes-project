@@ -9,6 +9,16 @@ export const getHeroes = async (req, res, next) => {
   }
 };
 
+export const getHeroById = async (req, res, next) => {
+  const { heroId } = req.params;
+  try {
+    const hero = await Hero.findOne({ _id: heroId });
+    res.json({ message: "Success", code: 200, hero });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const addHero = async (req, res, next) => {
   try {
     const {
