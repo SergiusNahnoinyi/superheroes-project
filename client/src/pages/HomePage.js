@@ -8,10 +8,10 @@ export default function HomePage() {
 
   useEffect(() => {
     getHeroes().then(setHeroes);
-  }, []);
+  }, [heroes]);
 
   return (
-    <section>
+    <section style={{ marginBottom: "24px" }}>
       <h1 style={{ marginBottom: "16px", textAlign: "center" }}>
         Your Superheroes List
       </h1>

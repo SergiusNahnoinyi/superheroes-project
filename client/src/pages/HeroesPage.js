@@ -37,7 +37,7 @@ export default function HeroesPage() {
   };
 
   return (
-    <section>
+    <section style={{ marginBottom: "24px" }}>
       <h1 style={{ marginBottom: "16px", textAlign: "center" }}>
         Find Your Superhero
       </h1>

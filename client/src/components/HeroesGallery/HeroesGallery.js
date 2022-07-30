@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import { FcPlus } from "react-icons/fc";
+import { FcPlus, FcCancel } from "react-icons/fc";
 import PropTypes from "prop-types";
 
-import { addHero } from "../../services/heroesApi";
+import { addHero, deleteHero } from "../../services/heroesApi";
 
 import styles from "./HeroesGallery.module.css";
 
@@ -29,7 +29,7 @@ export default function HeroesGallery({ heroes }) {
               />
               <h3 className={styles.title}>{hero.nickname || hero.name}</h3>
             </Link>
-            {location.pathname === "/heroes" && (
+            {location.pathname === "/heroes" ? (
               <button
                 type="button"
                 className={styles.button}
@@ -38,6 +38,16 @@ export default function HeroesGallery({ heroes }) {
                 }}
               >
                 <FcPlus style={{ width: "60px", height: "60px" }} />
+              </button>
+            ) : (
+              <button
+                type="button"
+                className={styles.button}
+                onClick={() => {
+                  deleteHero(hero._id);
+                }}
+              >
+                <FcCancel style={{ width: "60px", height: "60px" }} />
               </button>
             )}
           </li>

@@ -45,7 +45,17 @@ export async function addHero(hero) {
       catch_phrase: "No catch phrase found. Find it in Google and add here",
       images: `${hero.image.url}`,
     });
-    return data;
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function deleteHero(heroId) {
+  const url = `/heroes/${heroId}`;
+  try {
+    const { data } = await axios.delete(url);
+    console.log(data);
   } catch (error) {
     console.error(error);
   }

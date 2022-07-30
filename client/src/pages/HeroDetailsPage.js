@@ -12,5 +12,5 @@ export default function HeroDetailsPage() {
     getHeroById(heroId).then(setHero);
   }, [heroId]);
 
-  return <GalleryItem hero={hero} />;
+  return <GalleryItem hero={hero} style={{ marginBottom: "24px" }} />;
 }
