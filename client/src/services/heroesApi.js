@@ -28,8 +28,24 @@ export async function getHeroesBySearch(heroName) {
   const url = `https://www.superheroapi.com/api.php/1239994973410759/search/${heroName}`;
   try {
     const { data } = await axios.get(url);
-    console.log(data.results);
     return data.results;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function addHero(hero) {
+  const url = `/heroes`;
+  try {
+    const { data } = await axios.post(url, {
+      nickname: `${hero.name}`,
+      real_name: `${hero["biography"]["full-name"]}`, // Hyphens no longer allowed, but this API uses them, so I neeeded to use brackets to access a key
+      origin_description: `${hero.work.occupation}`,
+      superpowers: `${Object.keys(hero.powerstats).join(", ")}`,
+      catch_phrase: "No catch phrase found. Find it in Google and add here",
+      images: `${hero.image.url}`,
+    });
+    return data;
   } catch (error) {
     console.error(error);
   }
