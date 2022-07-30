@@ -3,6 +3,8 @@ import { BsArrowLeftSquare } from "react-icons/bs";
 import { EditText } from "react-edit-text";
 import PropTypes from "prop-types";
 
+import { updateHero } from "../../services/heroesApi";
+
 import "react-edit-text/dist/index.css";
 import styles from "./GalleryItem.module.css";
 
@@ -29,6 +31,10 @@ export default function GalleryItem({ hero }) {
               name="phrase"
               className={styles.overview}
               defaultValue={hero.catch_phrase}
+              onSave={({ name, value, previousValue }) => {
+                const catch_phrase = value;
+                updateHero(hero._id, catch_phrase);
+              }}
             />
 
             <h3 className={styles.subitle}>Real name: {hero.real_name}</h3>
