@@ -8,7 +8,7 @@ export default function HomePage() {
 
   useEffect(() => {
     getHeroes().then(setHeroes);
-  }, [heroes]);
+  }, []);
 
   return (
     <section style={{ marginBottom: "24px" }}>

@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { BsArrowLeftSquare } from "react-icons/bs";
+import { EditText } from "react-edit-text";
 import PropTypes from "prop-types";
 
+import "react-edit-text/dist/index.css";
 import styles from "./GalleryItem.module.css";
 
 export default function GalleryItem({ hero }) {
@@ -23,15 +25,25 @@ export default function GalleryItem({ hero }) {
           <img className={styles.image} src={hero.images} alt={hero.nickname} />
           <div className={styles.card}>
             <h1 className={styles.title}>{hero.nickname}</h1>
-            <p className={styles.overview}>{hero.catch_phrase}</p>
+            <EditText
+              name="phrase"
+              className={styles.overview}
+              defaultValue={hero.catch_phrase}
+            />
 
             <h3 className={styles.subitle}>Real name: {hero.real_name}</h3>
-            <p className={styles.description}>{hero.origin_description}</p>
+            <EditText
+              name="description"
+              className={styles.description}
+              defaultValue={hero.origin_description}
+            />
 
             <h3 className={styles.subitle}>Superpowers</h3>
-            <p className={styles.description}>
-              {hero.superpowers.map((power) => power).join(", ")}
-            </p>
+            <EditText
+              name="superpowers"
+              className={styles.description}
+              defaultValue={hero.superpowers.map((power) => power).join(", ")}
+            />
           </div>
         </div>
       )}
