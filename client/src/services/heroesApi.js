@@ -72,6 +72,17 @@ export async function updateHero(
   }
 }
 
+export async function updateImage(heroId, file) {
+  const url = `/heroes/images/${heroId}`;
+  try {
+    const { data } = await axios.patch(url, file);
+    console.log(data);
+    toast.success("You successfully updated an image!");
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function deleteHero(heroId) {
   const url = `/heroes/${heroId}`;
   try {

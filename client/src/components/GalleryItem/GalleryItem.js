@@ -30,7 +30,7 @@ export default function GalleryItem({ hero }) {
                 )}`}
               />
             )}
-            <SelectButton />
+            <SelectButton heroId={hero._id} />
           </div>
           <div className={styles.card}>
             <h1 className={styles.title}>{hero.nickname}</h1>

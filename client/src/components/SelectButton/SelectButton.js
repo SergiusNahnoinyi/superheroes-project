@@ -1,13 +1,19 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { FcCamera } from "react-icons/fc";
+import PropTypes from "prop-types";
 
 import styles from "./SelectButton.module.css";
 
-export default function SelectButton() {
+export default function SelectButton({ heroId }) {
+  const [file, setFile] = useState(null);
   const fileInput = useRef();
 
   const selectFile = () => {
     fileInput.current.click();
+  };
+
+  const handleChange = (event) => {
+    setFile(event.target.files[0]);
   };
 
   return (
@@ -17,6 +23,7 @@ export default function SelectButton() {
         name="image"
         style={{ display: "none" }}
         ref={fileInput}
+        onChange={handleChange}
       />
       <button type="button" className={styles.button} onClick={selectFile}>
         <FcCamera style={{ width: "60px", height: "60px" }} />
@@ -24,3 +31,7 @@ export default function SelectButton() {
     </div>
   );
 }
+
+SelectButton.propTypes = {
+  id: PropTypes.string,
+};
