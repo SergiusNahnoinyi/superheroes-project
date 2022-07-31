@@ -1,8 +1,8 @@
 import { EditText } from "react-edit-text";
 import PropTypes from "prop-types";
+import { Buffer } from "buffer";
 
 import { updateHero } from "../../services/heroesApi";
-// import { ImagePicker } from "../ImagePicker/ImagePicker";
 
 import "react-edit-text/dist/index.css";
 import styles from "./GalleryItem.module.css";
@@ -12,12 +12,22 @@ export default function GalleryItem({ hero }) {
     <section>
       {hero && (
         <div className={styles.container}>
-          <img
-            className={styles.image}
-            src={hero.imageURL}
-            alt={hero.nickname}
-          />
-          {/* <ImagePicker /> */}
+          {hero.imageURL ? (
+            <img
+              className={styles.image}
+              src={hero.imageURL}
+              alt={hero.nickname}
+            />
+          ) : (
+            <img
+              className={styles.image}
+              alt={hero.nickname}
+              src={`data:image/jpg;base64,${Buffer.from(
+                hero.updatedImage,
+                "base64"
+              )}`}
+            />
+          )}
           <div className={styles.card}>
             <h1 className={styles.title}>{hero.nickname}</h1>
             <EditText
