@@ -71,9 +71,12 @@ export const updateImage = async (req, res, next) => {
     const imageName = `${heroId}_${originalname}`;
     const resultUpload = path.join(imagesDir, imageName);
     await fs.rename(tempUpload, resultUpload);
-    const imageURL = path.join("public", "images", imageName);
-    await Hero.findByIdAndUpdate({ _id: heroId }, { imageURL });
-    res.status(200).json({ imageURL });
+    const updatedImage = path.join("public", "images", imageName);
+    await Hero.findByIdAndUpdate(
+      { _id: heroId },
+      { updatedImage, imageURL: null }
+    );
+    res.status(200).json({ updatedImage });
   } catch (error) {
     await fs.unlink(tempUpload);
     next(error);
