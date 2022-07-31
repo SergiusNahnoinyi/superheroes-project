@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import { BsArrowLeftSquare } from "react-icons/bs";
 import { EditText } from "react-edit-text";
 import PropTypes from "prop-types";
 
@@ -10,19 +8,8 @@ import "react-edit-text/dist/index.css";
 import styles from "./GalleryItem.module.css";
 
 export default function GalleryItem({ hero }) {
-  let navigate = useNavigate();
-
   return (
     <section>
-      <button
-        type="button"
-        className={styles.button}
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        <BsArrowLeftSquare style={{ width: "2em", height: "2em" }} />
-      </button>
       {hero && (
         <div className={styles.container}>
           <img
