@@ -12,10 +12,14 @@
   margin-top: 16px;
 }
 
-.image {
+.imageThumb {
+  position: relative;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 5px;
+}
+
+.image {
+  border-radius: 15px;
 }
 
 .description,
