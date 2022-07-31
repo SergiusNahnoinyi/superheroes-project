@@ -1,4 +1,12 @@
+import path from "path";
+import fs from "fs/promises";
+import { fileURLToPath } from "url";
+
 import Hero from "../models/hero.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const imagesDir = path.join(__dirname, "../", "public", "images");
 
 export const getHeroes = async (req, res, next) => {
   try {
@@ -27,7 +35,7 @@ export const addHero = async (req, res, next) => {
       origin_description,
       superpowers,
       catch_phrase,
-      images,
+      imageURL,
     } = req.body;
     const hero = await Hero.create({
       nickname,
@@ -35,7 +43,7 @@ export const addHero = async (req, res, next) => {
       origin_description,
       superpowers,
       catch_phrase,
-      images,
+      imageURL,
     });
     res.status(201).json({ message: "Created", code: 201, hero });
   } catch (error) {
@@ -52,6 +60,22 @@ export const updateHero = async (req, res, next) => {
     });
     res.json({ message: "Updated", code: 200, hero });
   } catch (error) {
+    next(error);
+  }
+};
+
+export const updateImage = async (req, res, next) => {
+  const { path: tempUpload, originalname } = req.file;
+  const { heroId } = req.params;
+  try {
+    const imageName = `${heroId}_${originalname}`;
+    const resultUpload = path.join(imagesDir, imageName);
+    await fs.rename(tempUpload, resultUpload);
+    const imageURL = path.join("public", "images", imageName);
+    await Hero.findByIdAndUpdate({ _id: heroId }, { imageURL });
+    res.status(200).json({ imageURL });
+  } catch (error) {
+    await fs.unlink(tempUpload);
     next(error);
   }
 };
