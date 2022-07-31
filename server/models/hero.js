@@ -21,7 +21,7 @@ const hero = new Schema(
       type: String,
     },
     imageURL: [String],
-    updatedImage: [Buffer],
+    updatedImage: Buffer,
   },
   { versionKey: false }
 );
