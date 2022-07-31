@@ -33,7 +33,15 @@ export default function GalleryItem({ hero }) {
               defaultValue={hero.catch_phrase}
               onSave={({ name, value, previousValue }) => {
                 const catch_phrase = value;
-                updateHero(hero._id, catch_phrase);
+                const origin_description = hero.origin_description;
+                const superpowers = hero.superpowers
+                  .map((power) => power)
+                  .join(", ");
+                updateHero(hero._id, {
+                  catch_phrase,
+                  origin_description,
+                  superpowers,
+                });
               }}
             />
 
@@ -42,6 +50,16 @@ export default function GalleryItem({ hero }) {
               name="description"
               className={styles.description}
               defaultValue={hero.origin_description}
+              onSave={({ name, value, previousValue }) => {
+                const catch_phrase = hero.catch_phrase;
+                const origin_description = value;
+                const superpowers = hero.superpowers;
+                updateHero(hero._id, {
+                  catch_phrase,
+                  origin_description,
+                  superpowers,
+                });
+              }}
             />
 
             <h3 className={styles.subitle}>Superpowers</h3>
@@ -49,6 +67,16 @@ export default function GalleryItem({ hero }) {
               name="superpowers"
               className={styles.description}
               defaultValue={hero.superpowers.map((power) => power).join(", ")}
+              onSave={({ name, value, previousValue }) => {
+                const catch_phrase = hero.catch_phrase;
+                const origin_description = hero.origin_description;
+                const superpowers = value;
+                updateHero(hero._id, {
+                  catch_phrase,
+                  origin_description,
+                  superpowers,
+                });
+              }}
             />
           </div>
         </div>

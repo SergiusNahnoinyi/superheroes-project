@@ -51,12 +51,18 @@ export async function addHero(hero) {
   }
 }
 
-export async function updateHero(heroId, catch_phrase) {
+export async function updateHero(
+  heroId,
+  { catch_phrase, origin_description, superpowers }
+) {
   const url = `/heroes/${heroId}`;
   try {
-    const { data } = await axios.put(url, { catch_phrase });
+    const { data } = await axios.put(url, {
+      catch_phrase,
+      origin_description,
+      superpowers,
+    });
     console.log(data);
-    console.log(catch_phrase);
   } catch (error) {
     console.error(error);
   }
