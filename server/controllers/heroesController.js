@@ -6,7 +6,7 @@ import Hero from "../models/hero.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const imagesDir = path.join(__dirname, "../", "public", "images");
+const imagesDir = path.join(__dirname, "../", "public");
 
 export const getHeroes = async (req, res, next) => {
   try {
@@ -68,10 +68,10 @@ export const updateImage = async (req, res, next) => {
   const { path: tempUpload, originalname } = req.file;
   const { heroId } = req.params;
   try {
-    const imageName = `${heroId}_${originalname}`;
+    const imageName = `${originalname}`;
     const resultUpload = path.join(imagesDir, imageName);
     await fs.rename(tempUpload, resultUpload);
-    const updatedImage = path.join("public", "images", imageName);
+    const updatedImage = path.join("public", imageName);
     await Hero.findByIdAndUpdate(
       { _id: heroId },
       { updatedImage, imageURL: null }
