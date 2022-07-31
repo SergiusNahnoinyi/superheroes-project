@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "http://localhost:4000/api";
 
@@ -46,8 +47,10 @@ export async function addHero(hero) {
       images: `${hero.image.url}`,
     });
     console.log(data);
+    toast.success("You successfully added a hero!");
   } catch (error) {
     console.error(error);
+    toast.error("Adding failed!");
   }
 }
 
@@ -63,6 +66,7 @@ export async function updateHero(
       superpowers,
     });
     console.log(data);
+    toast.success("You successfully updated a hero!");
   } catch (error) {
     console.error(error);
   }
@@ -73,6 +77,7 @@ export async function deleteHero(heroId) {
   try {
     const { data } = await axios.delete(url);
     console.log(data);
+    toast.success("You successfully deleted a hero!");
   } catch (error) {
     console.error(error);
   }

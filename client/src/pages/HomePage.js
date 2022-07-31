@@ -10,12 +10,16 @@ export default function HomePage() {
     getHeroes().then(setHeroes);
   }, []);
 
+  const deleteHero = (id) => {
+    setHeroes(heroes.filter((hero) => hero._id !== id));
+  };
+
   return (
     <section style={{ marginBottom: "24px" }}>
       <h1 style={{ marginBottom: "16px", textAlign: "center" }}>
         Your Superheroes List
       </h1>
-      <HeroesGallery heroes={heroes} />
+      <HeroesGallery heroes={heroes} onDelete={deleteHero} />
     </section>
   );
 }

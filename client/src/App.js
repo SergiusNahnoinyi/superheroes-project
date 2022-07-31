@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Container from "./components/Container";
 import AppBar from "./components/AppBar";
 import Loader from "./components/Loader";
@@ -22,6 +25,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
+      <ToastContainer />
     </Container>
   );
 }

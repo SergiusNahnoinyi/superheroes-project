@@ -17,7 +17,7 @@ export default function SearchBar({ onSubmit }) {
     e.preventDefault();
 
     if (query.trim() === "") {
-      return toast.error("Type your hero's name");
+      return toast.error("Type hero's name");
     }
     onSubmit(query);
     setQuery("");

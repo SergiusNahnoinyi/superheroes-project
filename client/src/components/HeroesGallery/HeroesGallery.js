@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcPlus, FcCancel } from "react-icons/fc";
 import PropTypes from "prop-types";
 
@@ -6,8 +6,9 @@ import { addHero, deleteHero } from "../../services/heroesApi";
 
 import styles from "./HeroesGallery.module.css";
 
-export default function HeroesGallery({ heroes }) {
+export default function HeroesGallery({ heroes, onDelete }) {
   const location = useLocation();
+  let navigate = useNavigate();
 
   return (
     <ul className={styles.gallery}>
@@ -35,6 +36,7 @@ export default function HeroesGallery({ heroes }) {
                 className={styles.button}
                 onClick={() => {
                   addHero(hero);
+                  navigate("/");
                 }}
               >
                 <FcPlus style={{ width: "60px", height: "60px" }} />
@@ -45,6 +47,7 @@ export default function HeroesGallery({ heroes }) {
                 className={styles.button}
                 onClick={() => {
                   deleteHero(hero._id);
+                  onDelete(hero._id);
                 }}
               >
                 <FcCancel style={{ width: "60px", height: "60px" }} />
