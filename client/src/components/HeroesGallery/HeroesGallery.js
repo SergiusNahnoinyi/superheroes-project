@@ -25,7 +25,7 @@ export default function HeroesGallery({ heroes, onDelete }) {
             >
               <img
                 className={styles.image}
-                src={hero.images || hero.image.url}
+                src={hero.imageURL || hero.image.url}
                 alt={hero.real_name}
               />
               <h3 className={styles.title}>{hero.nickname || hero.name}</h3>

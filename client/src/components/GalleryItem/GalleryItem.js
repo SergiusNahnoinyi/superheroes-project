@@ -4,6 +4,7 @@ import { EditText } from "react-edit-text";
 import PropTypes from "prop-types";
 
 import { updateHero } from "../../services/heroesApi";
+// import { ImagePicker } from "../ImagePicker/ImagePicker";
 
 import "react-edit-text/dist/index.css";
 import styles from "./GalleryItem.module.css";
@@ -24,7 +25,12 @@ export default function GalleryItem({ hero }) {
       </button>
       {hero && (
         <div className={styles.container}>
-          <img className={styles.image} src={hero.images} alt={hero.nickname} />
+          <img
+            className={styles.image}
+            src={hero.imageURL}
+            alt={hero.nickname}
+          />
+          {/* <ImagePicker /> */}
           <div className={styles.card}>
             <h1 className={styles.title}>{hero.nickname}</h1>
             <EditText

@@ -44,7 +44,7 @@ export async function addHero(hero) {
       origin_description: `${hero.work.occupation}`,
       superpowers: `${Object.keys(hero.powerstats).join(", ")}`,
       catch_phrase: "No catch phrase found. Find it in Google and add here",
-      images: `${hero.image.url}`,
+      imageURL: `${hero.image.url}`,
     });
     console.log(data);
     toast.success("You successfully added a hero!");
