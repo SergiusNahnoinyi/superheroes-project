@@ -20,8 +20,8 @@ const hero = new Schema(
     catch_phrase: {
       type: String,
     },
-    imageURL: [String],
-    updatedImage: Buffer,
+    imageURL: Buffer,
+    // updatedImage: Buffer,
   },
   { versionKey: false }
 );
