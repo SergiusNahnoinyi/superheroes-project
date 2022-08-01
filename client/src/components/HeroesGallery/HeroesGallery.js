@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcPlus, FcCancel } from "react-icons/fc";
 import PropTypes from "prop-types";
-// import { Buffer } from "buffer";
+import { Buffer } from "buffer";
 
 import { addHero, deleteHero } from "../../services/heroesApi";
 
@@ -26,17 +26,13 @@ export default function HeroesGallery({ heroes, onDelete }) {
             >
               <img
                 className={styles.image}
-                src={hero.imageURL || hero.image.url}
+                src={
+                  hero.imageURL
+                    ? `${Buffer.from(hero.imageURL, "base64")}`
+                    : hero.image.url
+                }
                 alt={hero.real_name}
               />
-              {/* <img
-                className={styles.image}
-                alt={hero.nickname}
-                src={`data:image/jpg;base64,${Buffer.from(
-                  hero.updatedImage,
-                  "base64"
-                )}`}
-              /> */}
               <h3 className={styles.title}>{hero.nickname || hero.name}</h3>
             </Link>
             {location.pathname === "/heroes" ? (

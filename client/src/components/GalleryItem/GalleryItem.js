@@ -14,22 +14,11 @@ export default function GalleryItem({ hero }) {
       {hero && (
         <div className={styles.container}>
           <div className={styles.imageThumb}>
-            {hero.imageURL ? (
-              <img
-                className={styles.image}
-                src={hero.imageURL}
-                alt={hero.nickname}
-              />
-            ) : (
-              <img
-                className={styles.image}
-                alt={hero.nickname}
-                src={`data:image/jpg;base64,${Buffer.from(
-                  hero.updatedImage,
-                  "base64"
-                )}`}
-              />
-            )}
+            <img
+              className={styles.image}
+              alt={hero.nickname}
+              src={`${Buffer.from(hero.imageURL, "base64")}`}
+            />
             <SelectButton heroId={hero._id} />
           </div>
           <div className={styles.card}>
