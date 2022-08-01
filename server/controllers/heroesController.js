@@ -1,7 +1,7 @@
 import Hero from "../models/hero.js";
 
 export const getHeroes = async (req, res, next) => {
-  const { page, limit = 3 } = req.query;
+  const { page, limit = 5 } = req.query;
   const skip = (page - 1) * limit;
   try {
     const heroes = await Hero.find({}, "", {

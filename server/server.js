@@ -8,7 +8,6 @@ import db from "./config/db.js";
 import router from "./routes/heroesRouter.js";
 
 const PORT = process.env.PORT || 4000;
-const DB_PORT = process.env.DB_PORT;
 
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -20,13 +19,9 @@ app.use(express.static("public"));
 
 app.use("/api/heroes", router);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
-});
-
 db.then(() => {
-  app.listen(DB_PORT, function () {
-    console.log(`Database connected successfully on port: ${DB_PORT}`);
+  app.listen(PORT, function () {
+    console.log(`Database and server connected successfully on port: ${PORT}`);
   });
 }).catch((err) => {
   console.log(`Server not running. Error message: ${err.message}`);
