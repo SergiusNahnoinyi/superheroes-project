@@ -16,11 +16,12 @@ export default function SelectButton({ heroId }) {
   const handleChange = (event) => {
     const file = event.target.files[0];
     console.log(file);
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
 
-    const formData = new FormData();
-    formData.append("image", file);
-
-    updateImage(heroId, formData);
+      updateImage(heroId, formData);
+    }
   };
 
   return (
