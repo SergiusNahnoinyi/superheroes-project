@@ -1,12 +1,4 @@
-import path from "path";
-import fs from "fs/promises";
-import { fileURLToPath } from "url";
-
 import Hero from "../models/hero.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const imagesDir = path.join(__dirname, "../", "public");
 
 export const getHeroes = async (req, res, next) => {
   try {
@@ -65,17 +57,12 @@ export const updateHero = async (req, res, next) => {
 };
 
 export const updateImage = async (req, res, next) => {
-  const { path: tempUpload, originalname } = req.file;
+  const { path } = req.file;
   const { heroId } = req.params;
   try {
-    const imageName = `${originalname}`;
-    const resultUpload = path.join(imagesDir, imageName);
-    await fs.rename(tempUpload, resultUpload);
-    const updatedImage = path.join("public", imageName);
-    await Hero.findByIdAndUpdate({ _id: heroId }, { imageURL: updatedImage });
-    res.status(200).json({ updatedImage });
+    await Hero.findByIdAndUpdate({ _id: heroId }, { imageURL: path });
+    res.status(200).json({ path });
   } catch (error) {
-    await fs.unlink(tempUpload);
     next(error);
   }
 };
