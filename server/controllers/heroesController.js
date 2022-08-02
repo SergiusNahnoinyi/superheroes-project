@@ -3,12 +3,25 @@ import Hero from "../models/hero.js";
 export const getHeroes = async (req, res, next) => {
   const { page, limit = 5 } = req.query;
   const skip = (page - 1) * limit;
+  const totalDocs = await Hero.countDocuments();
+  const pages = Math.ceil(totalDocs / limit);
   try {
+    if (page > pages) {
+      return res.status(404).json({ message: "Page not found" });
+    }
+
     const heroes = await Hero.find({}, "", {
       skip,
       limit: Number(limit),
     });
-    res.json({ message: "Success", code: 200, heroes });
+    res.json({
+      message: "Success",
+      code: 200,
+      heroes,
+      page,
+      pages,
+      count: heroes.length,
+    });
   } catch (error) {
     next(error);
   }
