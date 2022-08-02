@@ -1,14 +1,14 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-axios.defaults.baseURL = "https://superheroes-project-server.herokuapp.com/api";
+axios.defaults.baseURL = "http://localhost:4000/api";
 
-export async function getHeroes() {
-  const url = `/heroes`;
+export async function getHeroes(page) {
+  const url = `/heroes?page=${page}`;
   try {
     const { data } = await axios.get(url);
-    const { heroes } = data;
-    return heroes;
+    console.log(data);
+    return data;
   } catch (error) {
     console.error(error);
   }
