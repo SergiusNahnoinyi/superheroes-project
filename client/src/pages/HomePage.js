@@ -26,7 +26,11 @@ export default function HomePage() {
       <h1 style={{ marginBottom: "16px", textAlign: "center" }}>
         Your Superheroes List
       </h1>
-      <HeroesGallery heroes={heroes} onDelete={deleteHero} />
+      {!heroes ? (
+        <h1>Loading...</h1>
+      ) : (
+        <HeroesGallery heroes={heroes} onDelete={deleteHero} />
+      )}
       <Pagination page={page} pages={pages} changePage={setPage} />
     </section>
   );
