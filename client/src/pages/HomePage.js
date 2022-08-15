@@ -27,7 +27,7 @@ export default function HomePage() {
         Your Superheroes List
       </h1>
       {!heroes ? (
-        <h1>Loading...</h1>
+        <h2>Loading...</h2>
       ) : (
         <HeroesGallery heroes={heroes} onDelete={deleteHero} />
       )}
