@@ -11,16 +11,10 @@ export default function HomePage() {
   const [pages, setPages] = useState(1);
 
   useEffect(() => {
-    const fetchHeroes = async () => {
-      try {
-        const data = await getHeroes(page);
-        setPages(data.pages);
-        setHeroes(data.heroes);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchHeroes();
+    getHeroes(page).then((response) => {
+      setHeroes(response.heroes);
+      setPages(response.pages);
+    });
   }, [page]);
 
   const deleteHero = (id) => {

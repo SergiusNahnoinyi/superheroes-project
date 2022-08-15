@@ -7,8 +7,9 @@ export async function getHeroes(page) {
   const url = `/heroes?page=${page}`;
   try {
     const { data } = await axios.get(url);
+    const { heroes, pages } = data;
     console.log(data);
-    return data;
+    return { heroes, pages };
   } catch (error) {
     console.error(error);
   }
